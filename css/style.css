@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    border-bottom: 1px solid #ddd;
+}
+
+header h2 {
+    font-size: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.grid-produtos {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 300px;
+    height: 320px;
+}
+
+.card-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    /* background: #f2f2f2; */
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin: 15px 0 8px;
+    font-weight: normal;
+    margin-top: auto;
+}
+
+.preco {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+button {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background: #333;
+}
+
+@media(max-width:900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .topo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
