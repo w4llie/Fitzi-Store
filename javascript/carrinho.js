@@ -129,4 +129,16 @@ window.addToCart = addToCart;
 window.updateCartQty = updateQuantity;
 window.removeFromCart = removeItem;
 
-getCart();
+async function initCart() {
+    try {
+        await fetch(`${API_BASE}/cart`, {
+            credentials: "include"
+        });
+
+        await getCart();
+    } catch (err) {
+        console.error("Erro initCart:", err);
+    }
+}
+
+initCart();

@@ -1,8 +1,13 @@
 const API_PRODUCTS = "http://10.0.0.153/wp-json/wc/store/v1/products";
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", async (e) => {
     if (e.target.classList.contains("btn-carrinho")) {
         const idProduto = e.target.dataset.id;
+
+        await fetch("http://10.0.0.153/wp-json/wc/store/v1/cart", {
+            credentials: "include"
+        });
+
         window.addToCart(idProduto);
     }
 });
