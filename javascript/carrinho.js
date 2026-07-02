@@ -1,67 +1,132 @@
-const API = "http://10.0.0.153/wp-json/wc/store/v1";
+const API_BASE = "http://10.0.0.153/wp-json/wc/store/v1";
 
-async function carregarCarrinho() {
+let cart = [];
 
-    const cartToken = localStorage.getItem("cartToken");
+async function getCart() {
+    try {
+        const res = await fetch(`${API_BASE}/cart`, {
+            credentials: "include",
+        });
 
-    const resposta = await fetch(`${API}/cart`, {
+        if (!res.ok) throw new Error("Erro ao buscar carrinho");
 
-        credentials: "include",
+        const data = await res.json();
 
-        headers: cartToken ? {
-            "Cart-Token": cartToken
-        } : {}
+        cart = data.items || [];
+        renderCart();
 
-    });
+        return cart;
 
-    const carrinho = await resposta.json();
-
-    console.log(carrinho);
-
-    const lista = document.getElementById("lista-carrinho");
-
-    lista.innerHTML = "";
-
-    if (!carrinho.items || carrinho.items.length === 0) {
-
-        lista.innerHTML = "<p>Carrinho vazio.</p>";
-
-        return;
-
+    } catch (err) {
+        console.error("Erro carrinho:", err);
     }
-
-    carrinho.items.forEach(item => {
-
-        const imagem =
-            item.images.length
-                ? item.images[0].src
-                : "";
-
-        const preco =
-            (item.prices.price / 100)
-            .toFixed(2)
-            .replace(".", ",");
-
-        lista.innerHTML += `
-
-        <div class="item">
-
-            <img src="${imagem}" width="100">
-
-            <h3>${item.name}</h3>
-
-            <p>Quantidade: ${item.quantity}</p>
-
-            <p>R$ ${preco}</p>
-
-        </div>
-
-        <hr>
-
-        `;
-
-    });
-
 }
 
-carregarCarrinho();
+async function addToCart(productId, quantity = 1) {
+    try {
+        const res = await fetch(`${API_BASE}/cart/add-item`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: productId,
+                quantity: quantity,
+            }),
+        });
+
+        if (!res.ok) throw new Error("Erro ao adicionar");
+
+        const data = await res.json();
+
+        console.log("✔ Adicionado:", data);
+
+        await getCart();
+
+        return data;
+
+    } catch (err) {
+        console.error("Erro add:", err);
+    }
+}
+
+async function updateQuantity(key, quantity) {
+    try {
+        if (quantity <= 0) return removeItem(key);
+
+        const res = await fetch(`${API_BASE}/cart/update-item`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                key,
+                quantity,
+            }),
+        });
+
+        if (!res.ok) throw new Error("Erro update");
+
+        await res.json();
+
+        await getCart();
+
+    } catch (err) {
+        console.error("Erro update:", err);
+    }
+}
+
+async function removeItem(key) {
+    try {
+        const res = await fetch(`${API_BASE}/cart/remove-item`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ key }),
+        });
+
+        if (!res.ok) throw new Error("Erro remove");
+
+        await res.json();
+
+        await getCart();
+
+    } catch (err) {
+        console.error("Erro remove:", err);
+    }
+}
+
+function renderCart() {
+    const container = document.getElementById("cart");
+
+    if (!container) return;
+
+    if (!cart.length) {
+        container.innerHTML = "<p>Carrinho vazio</p>";
+        return;
+    }
+
+    container.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <h4>${item.name}</h4>
+
+            <p>Qtd: ${item.quantity}</p>
+
+            <button onclick="window.updateCartQty('${item.key}', ${item.quantity - 1})">-</button>
+
+            <button onclick="window.updateCartQty('${item.key}', ${item.quantity + 1})">+</button>
+
+            <button onclick="window.removeFromCart('${item.key}')">Remover</button>
+        </div>
+    `).join("");
+}
+
+window.addToCart = addToCart;
+window.updateCartQty = updateQuantity;
+window.removeFromCart = removeItem;
+
+getCart();
