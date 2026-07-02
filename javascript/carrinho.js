@@ -1,3 +1,7 @@
+await fetch(`${API_BASE}/cart`, {
+  credentials: "include"
+});
+
 const API_BASE = "http://10.0.0.153/wp-json/wc/store/v1";
 
 let cart = [];
