@@ -51,7 +51,6 @@ async function carregarDetalhesProduto() {
     }
 }
 
-// Função auxiliar para adicionar ao carrinho a partir da página de detalhes
 function adicionarAoCarrinhoDetalhes(produto) {
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     const itemExistente = carrinho.find(item => item.id === produto.id);
