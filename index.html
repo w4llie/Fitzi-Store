@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/logo_fs_48x48.png">
     <title>Loja</title>
 </head>
 
 <body>
 
 <header>
-    <h2>Fitzi Store</h2>
+    <div class="marca">
+        <img src="icons/logo_fitzi_store_512x512.png" alt="Logo" class="logo">
+        <h1>Fitzi Store</h1>
+    </div>
+    
 
     <nav>
         <a href="carrinho.html">Carrinho</a>
@@ -21,25 +26,59 @@
 
 <main class="container">
 
-    <h1>Loja</h1>
+    <h2>Loja</h2>
 
     <div class="topo">
         <p id="quantidade-produtos"></p>
-
-        <select id="ordenacao">
-            <option value="default">Ordenação padrão</option>
-            <option value="price-asc">Menor preço</option>
-            <option value="price-desc">Maior preço</option>
-            <option value="name">Nome</option>
-        </select>
     </div>
 
     <section class="grid-produtos" id="produtos"></section>
 
 </main>
 
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <h3>Fitzi Store</h3>
+            <p style="margin-top: 15px; font-size: 13px; color: #333;">
+                Artigos esportivos que inspiram movimento, superação e bem-estar.
+            </p>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Sobre</h4>
+            <ul>
+                <li><a href="#">Equipe</a></li>
+                <li><a href="#">História</a></li>
+                <li><a href="#">Carreiras</a></li>
+            </ul>
+        </div>
 
-<script src="javascript/carrinho.js"></script>
+        <div class="footer-column">
+            <h4>Privacidade</h4>
+            <ul>
+                <li><a href="#">Política de privacidade</a></li>
+                <li><a href="#">Termos e condições</a></li>
+                <li><a href="#">Fale conosco</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Redes sociais</h4>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter/X</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container footer-bottom">
+        <p>Criado com <a href="https://wordpress.org" target="_blank">WordPress</a></p>
+    </div>
+</footer>
+
+
 <script src="javascript/app.js"></script>
 
 </body>

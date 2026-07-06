@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/logo_fs_48x48.png">
+    <title>Checkout - Fitzi Store</title>
+</head>
+
+<body>
+
+<header>
+    <div class="marca">
+        <img src="icons/logo_fitzi_store_512x512.png" alt="Logo" class="logo">
+        <h1>Fitzi Store</h1>
+    </div>
+    
+    <nav>
+        <a href="index.html">Loja</a>
+        <a href="carrinho.html">Carrinho</a>
+        <a href="finalizar_compra.html">Finalização da compra</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="checkout-layout">
+        
+        <div class="checkout-form">
+            <form id="form-checkout">
+                
+                <section>
+                    <h3>Informações de contato</h3>
+                    <div class="form-group">
+                        <label for="email">Endereço de e-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@gmail.com" required>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Endereço de entrega</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sobrenome">Sobrenome</label>
+                            <input type="text" id="sobrenome" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pais">País</label>
+                        <select id="pais" disabled>
+                            <option value="BR">Brasil</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" placeholder="Rua, número, bairro" required>
+                    </div>
+
+                    <span class="optional-trigger" id="trigger-apto">+ Adicionar apartamento, suíte, unidade, etc.</span>
+                    <div class="form-group hidden" id="group-apto">
+                        <label for="apartamento">Apartamento, suíte, etc. (opcional)</label>
+                        <input type="text" id="apartamento">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <select id="estado" required>
+                                <option value="">Selecione um estado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" placeholder="00000-000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone (opcional)</label>
+                            <input type="tel" id="telefone">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="mesmo-endereco" checked style="width: auto;">
+                        <label for="mesmo-endereco" style="margin: 0;">Usar o mesmo endereço para cobrança</label>
+                    </div>
+                </section>
+
+                <section id="sessao-cobranca" class="hidden">
+                    <h3>Endereço de cobrança</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="billing_nome">Nome</label>
+                            <input type="text" id="billing_nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="billing_sobrenome">Sobrenome</label>
+                            <input type="text" id="billing_sobrenome">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_endereco">Endereço</label>
+                        <input type="text" id="billing_endereco">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="billing_cidade">Cidade</label>
+                            <input type="text" id="billing_cidade">
+                        </div>
+                        <div class="form-group">
+                            <label for="billing_estado">Estado</label>
+                            <select id="billing_estado">
+                                <option value="">Selecione um estado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_cep">CEP</label>
+                        <input type="text" id="billing_cep">
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Opções de entrega</h3>
+                    <div class="radio-box selected">
+                        <input type="radio" name="entrega" id="taxa-fixa" value="flat_rate" checked>
+                        <label for="taxa-fixa">Taxa fixa</label>
+                        <span>R$ 10,00</span>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Opções de pagamento</h3>
+                    <div class="radio-box selected">
+                        <input type="radio" name="pagamento" id="cod" value="cod" checked>
+                        <label for="cod">Pagamento na entrega</label>
+                    </div>
+                    <div class="radio-desc">
+                        Pagar em dinheiro na entrega.
+                    </div>
+                </section>
+
+                <section>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="trigger-nota" style="width: auto;">
+                        <label for="trigger-nota" style="margin: 0;">Adicione uma nota ao seu pedido</label>
+                    </div>
+                    <div class="form-group hidden" id="group-nota">
+                        <textarea id="nota" rows="3" placeholder="Notas sobre seu pedido..."></textarea>
+                    </div>
+                </section>
+
+                <p style="font-size: 12px; color: #888; margin-bottom: 20px;">
+                    Ao prosseguir com sua compra você concorda com nossos Termos e condições e a Política de privacidade
+                </p>
+
+                <button type="submit" class="btn-finalizar" id="btn-submit">Finalizar pedido</button>
+            </form>
+        </div>
+
+        <div class="resumo-pedido">
+            <h3>Resumo do pedido</h3>
+            <div class="resumo-box">
+                <div id="checkout-itens">
+                </div>
+
+                <div class="resumo-valores">
+                    <div class="valor-linha">
+                        <span>Subtotal</span>
+                        <span id="subtotal-val">R$ 0,00</span>
+                    </div>
+                    <div class="valor-linha">
+                        <span>Taxa fixa</span>
+                        <span>R$ 10,00</span>
+                    </div>
+                    <div class="valor-linha valor-total">
+                        <span>Total</span>
+                        <span id="total-val">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="javascript/checkout.js"></script>
+<script src="javascript/app.js"></script>
+
+</body>
+</html>

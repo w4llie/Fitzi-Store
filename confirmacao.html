@@ -5,9 +5,8 @@
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/logo_fs_48x48.png">
-    <title>Carrinho - Fitzi Store</title>
+    <title>Pedido Confirmado - Fitzi Store</title>
 </head>
-
 <body>
 
 <header>
@@ -18,25 +17,18 @@
     
     <nav>
         <a href="index.html">Loja</a>
-        <a href="carrinho.html">Carrinho</a>
-        <a href="finalizar_compra.html">Finalização da compra</a>
     </nav>
 </header>
 
-<main class="container">
-    <h2>Seu Carrinho</h2>
-
-    <div id="itens-carrinho" class="carrinho-container">
-        <!-- Itens serão inseridos aqui pelo JavaScript -->
-        <p style="text-align:center;">Carregando itens...</p>
-    </div>
-
-    <div class="resumo-carrinho" style="margin-top: 30px; padding: 20px; border-top: 2px solid #111; text-align: right;">
-        <h3>Total: <span id="total-carrinho">R$ 0,00</span></h3>
-        <br>
-        <button onclick="finalizarCompra()" style="width: 250px; margin-right: 0;">Finalizar Compra</button>
+<main class="container" style="text-align: center; padding-top: 50px;">
+    <div style="background: #f4fdf4; border: 1px solid #c3e6cb; padding: 40px; border-radius: 8px; max-width: 600px; margin: 0 auto;">
+        <h1 style="color: #28a745; font-size: 24px; margin-bottom: 20px;">✓ Pedido Realizado com Sucesso!</h1>
+        <p style="font-size: 18px; margin-bottom: 10px;">Obrigado por sua compra.</p>
+        <p style="color: #666;">O número do seu pedido é: <strong id="numero-pedido">#0000</strong></p>
+        <p style="color: #666; margin-top: 10px;">Você receberá um e-mail com os detalhes da entrega em breve.</p>
+        
         <br><br>
-        <a href="index.html" style="text-decoration: none; color: #666; font-size: 14px;">Continuar Comprando</a>
+        <a href="index.html" class="btn-finalizar" style="display: inline-block; text-decoration: none; width: auto; padding: 15px 40px;">Voltar para a Loja</a>
     </div>
 </main>
 
@@ -79,8 +71,16 @@
     </div>
 </footer>
 
-<script src="javascript/carrinho.js"></script>
-<script src="javascript/app.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const pedidoId = urlParams.get('id');
+        if (pedidoId) {
+            document.getElementById('numero-pedido').textContent = `#${pedidoId}`;
+        }
+    });
+</script>
 
 </body>
 </html>
