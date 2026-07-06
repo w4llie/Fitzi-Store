@@ -1,4 +1,3 @@
-// Chaves e URL (Idealmente estas constantes estariam em um arquivo config.js separado)
 const URL_BASE_DETALHES = "http://10.0.0.153/wp-json/wc/v3/products";
 const CK_DETALHES = "ck_1bee9d3f1ca8905c34e171a4f379b645211c0a95"; 
 const CS_DETALHES = "cs_f00f72cada131081f6de494a50b670a8b3f2572a";
