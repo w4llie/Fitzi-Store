@@ -67,6 +67,17 @@ async function carregarProdutos() {
             `;
         }
     }
+
+    // No seu app.js, dentro da função carregarProdutos:
+const resposta = await fetch(API_PRODUCTS, {
+    method: 'GET',
+    headers: {
+        // Use este valor específico para o bypass do Ngrok
+        "ngrok-skip-browser-warning": "any-value", 
+        "Accept": "application/json"
+    }
+});
+
 }
 
 function adicionarAoCarrinho(id) {
