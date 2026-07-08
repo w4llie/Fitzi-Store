@@ -19,17 +19,19 @@ function exibirCarrinho() {
         total += subtotal;
 
         container.innerHTML += `
-            <div class="item-carrinho" style="display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee;">
+            <div class="item-carrinho">
                 <img src="${item.imagem}" alt="${item.nome}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
-                <div style="flex-grow: 1; margin-left: 15px;">
-                    <h4 style="margin: 0; font-size: 16px;">${item.nome}</h4>
-                    <p style="margin: 5px 0; color: #666;">R$ ${item.preco.toFixed(2).replace('.', ',')} cada</p>
+                <div class="item-detalhes">
+                    <h4>${item.nome}</h4>
+                    <p>R$ ${item.preco.toFixed(2).replace('.', ',')} cada</p>
                 </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <button onclick="alterarQuantidade(${index}, -1)" style="width: 30px; height: 30px; padding: 0; display: flex; align-items: center; justify-content: center;">-</button>
-                    <span style="min-width: 20px; text-align: center;">${item.quantidade}</span>
-                    <button onclick="alterarQuantidade(${index}, 1)" style="width: 30px; height: 30px; padding: 0; display: flex; align-items: center; justify-content: center;">+</button>
-                    <button onclick="removerItem(${index})" style="background: #ff4444; width: auto; padding: 5px 10px; margin-left: 10px; font-size: 12px;">Remover</button>
+                <div class="item-acoes">
+                    <div class="qtd-controles">
+                        <button class="btn-qtd" onclick="alterarQuantidade(${index}, -1)">-</button>
+                        <span class="qtd-numero">${item.quantidade}</span>
+                        <button class="btn-qtd" onclick="alterarQuantidade(${index}, 1)">+</button>
+                    </div>
+                        <button class="btn remover" onclick="removerItem(${index})">Remover</button>
                 </div>
             </div>
         `;
